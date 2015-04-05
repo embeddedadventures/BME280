@@ -42,5 +42,36 @@ Arduino Source for the Bosch [BME280 MOD-1022 Weather Multi_sensor](http://www.e
   Serial.print("PressureMostAccurate=");
   Serial.println(BME280.getPressureMostAccurate()); // use double calculations
   ```
-  sdfsdf
+  
+  To switch to "normal" mode, we measurements are made regularly and you can take advatage of the built in smoothing
+  ```
+  // Example for "indoor navigation"
+  // We'll switch into normal mode for regular automatic samples
+  
+  BME280.writeStandbyTime(tsb_0p5ms);        // tsb = 0.5ms
+  BME280.writeFilterCoefficient(fc_16);      // IIR Filter coefficient 16
+  BME280.writeOversamplingPressure(os16x);    // pressure x16
+  BME280.writeOversamplingTemperature(os2x);  // temperature x2
+  BME280.writeOversamplingHumidity(os1x);     // humidity x1
+  
+  BME280.writeMode(smNormal);
+   
+  while (1) {
+    
+    
+    while (BME280.isMeasuring()) {
+
+
+    }
+    
+    // read out the data - must do this before calling the getxxxxx routines
+    BME280.readMeasurements();
+    printCompensatedMeasurements();
+    
+    delay(5000);	// do this every 5 seconds
+    Serial.println();
+  }
+}
+```
+  
   
