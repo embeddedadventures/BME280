@@ -1,7 +1,10 @@
 # BME280
-Arduino Source for the Bosch BME280 MOD-1022 weather multi-sensor
+Arduino Source for the Bosch [BME280 MOD-1022 Weather Multi_sensor](http://www.embeddedadventures.com/bme280_weather_multi_sensor_mod-1022.html)
+
+
 # Using the Library
 
+ ```
  // need to read the NVM compensation parameters
  
   BME280.readCompensationParams();
@@ -38,3 +41,6 @@ Arduino Source for the Bosch BME280 MOD-1022 weather multi-sensor
   Serial.println(BME280.getHumidityMostAccurate()); // use double calculations
   Serial.print("PressureMostAccurate=");
   Serial.println(BME280.getPressureMostAccurate()); // use double calculations
+  ```
+  sdfsdf
+  
