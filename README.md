@@ -1,5 +1,5 @@
 # BME280
-Arduino Source for the Bosch [BME280 MOD-1022 Weather Multi_sensor](http://www.embeddedadventures.com/bme280_weather_multi_sensor_mod-1022.html)
+Arduino Source for the Bosch [BME280 MOD-1022 Weather Multi Sensor](http://www.embeddedadventures.com/bme280_weather_multi_sensor_mod-1022.html)
 
 
 # Using the Library
