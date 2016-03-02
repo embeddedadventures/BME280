@@ -19,7 +19,7 @@ modification, are permitted provided that the following conditions are met:
 - Neither the name of Embedded Adventures nor the names of its contributors
   may be used to endorse or promote products derived from this software
   without specific prior written permission.
- 
+
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -27,9 +27,9 @@ ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
 LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
 SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 THE POSSIBILITY OF SUCH DAMAGE.
 
 */
@@ -77,7 +77,7 @@ enum dataOrder_e {
   hum_lsb,
 };
 
-// t_sb standby options - effectively the gap between automatic measurements 
+// t_sb standby options - effectively the gap between automatic measurements
 // when in "normal" mode
 
 enum standbySettings_e {
@@ -135,9 +135,9 @@ typedef struct _compParams_ts {
   int16_t  dig_P2;
   int16_t  dig_P3;
   int16_t  dig_P4;
-  int16_t  dig_P5;  
-  int16_t  dig_P6;  
-  int16_t  dig_P7; 
+  int16_t  dig_P5;
+  int16_t  dig_P6;
+  int16_t  dig_P7;
   int16_t  dig_P8;
   int16_t  dig_P9;
 
@@ -147,14 +147,14 @@ typedef struct _compParams_ts {
   int16_t  dig_H4;
   int16_t  dig_H5;
   uint8_t  dig_H6;
-  
+
 } compParams_ts;
 
 // union to make it easier to slurp up the first chunk of measurements
 
 union compParams_u
 {
-   uint8_t        compArray[20];
+   uint8_t        compArray[28];
    compParams_ts  compStruct;
 };
 
@@ -173,9 +173,9 @@ private:
   double   BME280_compensate_T_double(BME280_S32_t adc_T);
   double   BME280_compensate_P_double(BME280_S32_t adc_P);
   double   BME280_compensate_H_double(BME280_S32_t adc_H);
- 
+
   union compParams_u compParams;
-  
+
   // t_fine used in calculations to compensate based on temperature
   BME280_S32_t t_fine;
 
@@ -185,7 +185,7 @@ private:
   BME280_S32_t adc_h;
 
 public:
-	
+
   void     writeMode(mode_e m);	// set the mode (forced, normal, sleep)
   uint8_t  isMeasuring(void);	// is the BME280 still doing measurements?
   uint8_t  doingIMUpdate(void);	// Is the BME280 still updating parameters?
@@ -205,7 +205,7 @@ public:
   float    getPressure(void); 	// get the compensated pressure value
   float    getPressureMoreAccurate(void); 	// get more accurate pressure value (more flash/code required)
   double   getPressureMostAccurate(void);	// get the most accurate pressure value (even more flash/ code required)
-   
+
 };
 
 extern BME280Class BME280;
