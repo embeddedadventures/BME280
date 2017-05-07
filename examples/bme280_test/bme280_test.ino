@@ -38,7 +38,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
 // Written originally by Embedded Adventures
 
 #include <BME280_MOD-1022.h>
-
+#include "avr/dtostrf.h"
 #include <Wire.h>
 
 // Arduino needs this to pring pretty numbers
