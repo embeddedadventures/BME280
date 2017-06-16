@@ -41,6 +41,13 @@ THE POSSIBILITY OF SUCH DAMAGE.
 #include "avr/dtostrf.h"
 #include <Wire.h>
 
+// Running on a 48 MHz Teensy LC, I had problems with the Serial port
+// not connecting and the writeMode() command not functioning properly.
+// Other "high speed" devices may have similar problems.
+#if defined(__arm__) && defined(TEENSYDUINO) && (defined(KINETISK) || defined(KINETISL))
+#define TAKE_YOUR_TIME
+#endif
+
 // Arduino needs this to pring pretty numbers
 
 void printFormattedFloat(float x, uint8_t precision) {
@@ -98,6 +105,10 @@ void setup()
 {
   Wire.begin();
   Serial.begin(115200);
+#if defined(TAKE_YOUR_TIME)
+  delay(1000);
+#endif
+  Serial.println("Welcome to the BME280 MOD-1022 weather multi-sensor test sketch!");
 }
 
 // main loop
@@ -157,7 +168,9 @@ void loop()
   BME280.writeOversamplingPressure(os16x);    // pressure x16
   BME280.writeOversamplingTemperature(os2x);  // temperature x2
   BME280.writeOversamplingHumidity(os1x);     // humidity x1
-  
+#if defined(TAKE_YOUR_TIME)
+  delayMicroseconds(1000);
+#endif
   BME280.writeMode(smNormal);
    
   while (1) {
